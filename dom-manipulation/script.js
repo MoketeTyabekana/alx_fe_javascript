@@ -34,3 +34,10 @@ let quotes = [
       alert('Please enter both a quote and a category.');
     }
   }
+
+
+  document.getElementById('newQuote').addEventListener('click', showRandomQuote);
+document.getElementById('addQuote').addEventListener('click', addQuote);
+
+// Initially show a random quote on page load
+window.onload = showRandomQuote;
