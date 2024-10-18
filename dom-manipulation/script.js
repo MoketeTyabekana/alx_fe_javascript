@@ -15,3 +15,22 @@ let quotes = [
     
     quoteDisplay.innerHTML = `<p>"${randomQuote.text}" - Category: ${randomQuote.category}</p>`;
   }
+
+
+  function addQuote() {
+    const newQuoteText = document.getElementById('newQuoteText').value;
+    const newQuoteCategory = document.getElementById('newQuoteCategory').value;
+  
+   
+    if (newQuoteText && newQuoteCategory) {
+      
+      quotes.push({ text: newQuoteText, category: newQuoteCategory });
+  
+      document.getElementById('newQuoteText').value = '';
+      document.getElementById('newQuoteCategory').value = '';
+  
+      showRandomQuote();
+    } else {
+      alert('Please enter both a quote and a category.');
+    }
+  }
