@@ -185,6 +185,10 @@ setInterval(async () => {
 }, 60000);
 
 
+function notifySyncSuccess() {
+  alert('Quotes synced with server!');
+}
+
 function syncQuotesWithServer(serverQuotes) {
   const localQuotes = JSON.parse(localStorage.getItem('quotes')) || [];
   
@@ -193,6 +197,8 @@ function syncQuotesWithServer(serverQuotes) {
   })];
 
   localStorage.setItem('quotes', JSON.stringify(updatedQuotes));
+
+  notifySyncSuccess();
 }
 
 async function addQuoteToServer(quote) {
