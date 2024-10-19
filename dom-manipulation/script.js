@@ -179,16 +179,8 @@ async function fetchQuotesFromServer() {
   return serverQuotes;
 }
 
-async function addQuoteToServer(quote) {
-  await fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: 'POST',
-    body: JSON.stringify(quote),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-}
-
-const newQuote = { text: 'New quote text', category: 'Category' };
-addQuoteToServer(newQuote);
+setInterval(async () => {
+  const serverQuotes = await fetchQuotesFromServer();
+  syncQuotesWithServer(serverQuotes);
+}, 60000);
 
