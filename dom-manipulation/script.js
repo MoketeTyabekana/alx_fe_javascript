@@ -1,13 +1,11 @@
 
-
 let quotes = [
-    { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Motivation" },
-    { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", category: "Success" },
-    { text: "Life is what happens when you're busy making other plans.", category: "Life" }
-  ];
+  { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Motivation" },
+  { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", category: "Success" },
+  { text: "Life is what happens when you're busy making other plans.", category: "Life" }
+];
 
 
-  
 function saveQuotes() {
   localStorage.setItem('quotes', JSON.stringify(quotes));
 }
@@ -21,47 +19,45 @@ function loadQuotes() {
 }
 
 
-  function showRandomQuote() {
-    const quoteDisplay = document.getElementById('quoteDisplay');
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const randomQuote = quotes[randomIndex];
-    
-    quoteDisplay.innerHTML = `<p>"${randomQuote.text}" - Category: ${randomQuote.category}</p>`;
+function showRandomQuote() {
+  const quoteDisplay = document.getElementById('quoteDisplay');
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  const randomQuote = quotes[randomIndex];
 
-    sessionStorage.setItem('lastQuote', JSON.stringify(randomQuote)); 
-  }
-
-  function loadLastViewedQuote() {
-    const lastQuote = sessionStorage.getItem('lastQuote');
-    if (lastQuote) {
-      const quote = JSON.parse(lastQuote);
-      document.getElementById('quoteDisplay').innerHTML = `<p>"${quote.text}" - Category: ${quote.category}</p>`;
-    }
-  }
-
-
-  function addQuote() {
-    const newQuoteText = document.getElementById('newQuoteText').value;
-    const newQuoteCategory = document.getElementById('newQuoteCategory').value;
+  quoteDisplay.innerHTML = `<p>"${randomQuote.text}" - Category: ${randomQuote.category}</p>`;
   
-   
-    if (newQuoteText && newQuoteCategory) {
-      
-      quotes.push({ text: newQuoteText, category: newQuoteCategory });
-      saveQuotes();
-  
-      document.getElementById('newQuoteText').value = '';
-      document.getElementById('newQuoteCategory').value = '';
-  
-      showRandomQuote();
-    } else {
-      alert('Please enter both a quote and a category.');
-    }
-  }
+  sessionStorage.setItem('lastQuote', JSON.stringify(randomQuote));
+}
 
-  // Function to create and display the form for adding new quotes
+
+function loadLastViewedQuote() {
+  const lastQuote = sessionStorage.getItem('lastQuote');
+  if (lastQuote) {
+    const quote = JSON.parse(lastQuote);
+    document.getElementById('quoteDisplay').innerHTML = `<p>"${quote.text}" - Category: ${quote.category}</p>`;
+  }
+}
+
+
+function addQuote() {
+  const newQuoteText = document.getElementById('newQuoteText').value;
+  const newQuoteCategory = document.getElementById('newQuoteCategory').value;
+
+  if (newQuoteText && newQuoteCategory) {
+    quotes.push({ text: newQuoteText, category: newQuoteCategory });
+    saveQuotes();quote
+
+    document.getElementById('newQuoteText').value = '';
+    document.getElementById('newQuoteCategory').value = '';
+
+    showRandomQuote();
+  } else {
+    alert('Please enter both a quote and a category.');
+  }
+}
+
+
 function createAddQuoteForm() {
- 
   const formContainer = document.createElement('div');
   const inputText = document.createElement('input');
   inputText.id = 'newQuoteText';
@@ -77,12 +73,10 @@ function createAddQuoteForm() {
   addButton.innerText = 'Add Quote';
   addButton.onclick = addQuote;
 
-
   formContainer.appendChild(inputText);
   formContainer.appendChild(inputCategory);
   formContainer.appendChild(addButton);
 
-  
   document.body.appendChild(formContainer);
 }
 
@@ -106,8 +100,8 @@ function importFromJsonFile(event) {
   
   fileReader.onload = function(event) {
     const importedQuotes = JSON.parse(event.target.result);
-    quotes.push(...importedQuotes); 
-    saveQuotes(); localStorage
+    quotes.push(...importedQuotes); // Add imported quotes 
+    saveQuotes(); 
     alert('Quotes imported successfully!');
   };
 
@@ -122,4 +116,4 @@ document.getElementById('exportQuotes').addEventListener('click', exportToJson);
 
 window.onload = function() {
   loadQuotes();
-  loadLastViewedQuote();}
+  loadLastViewedQuote(); }
