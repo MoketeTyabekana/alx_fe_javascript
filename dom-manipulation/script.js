@@ -7,6 +7,12 @@ let quotes = [
   ];
 
 
+  
+function saveQuotes() {
+  localStorage.setItem('quotes', JSON.stringify(quotes));
+}
+
+
   function showRandomQuote() {
     const quoteDisplay = document.getElementById('quoteDisplay');
    
@@ -37,7 +43,7 @@ let quotes = [
 
   // Function to create and display the form for adding new quotes
 function createAddQuoteForm() {
-  // Create form elements
+ 
   const formContainer = document.createElement('div');
   const inputText = document.createElement('input');
   inputText.id = 'newQuoteText';
@@ -53,16 +59,16 @@ function createAddQuoteForm() {
   addButton.innerText = 'Add Quote';
   addButton.onclick = addQuote;
 
-  // Append the inputs and button to the form container
+
   formContainer.appendChild(inputText);
   formContainer.appendChild(inputCategory);
   formContainer.appendChild(addButton);
 
-  // Append the form to the body or a specific section of the page
+  
   document.body.appendChild(formContainer);
 }
 
-// Call the createAddQuoteForm function when the page loads to display the form
+
 window.onload = function() {
   showRandomQuote();
   createAddQuoteForm();
