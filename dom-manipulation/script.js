@@ -48,6 +48,7 @@ function loadQuotes() {
     if (newQuoteText && newQuoteCategory) {
       
       quotes.push({ text: newQuoteText, category: newQuoteCategory });
+      saveQuotes();
   
       document.getElementById('newQuoteText').value = '';
       document.getElementById('newQuoteCategory').value = '';
