@@ -195,5 +195,19 @@ function syncQuotesWithServer(serverQuotes) {
   localStorage.setItem('quotes', JSON.stringify(updatedQuotes));
 }
 
+async function addQuoteToServer(quote) {
+  await fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    body: JSON.stringify(quote),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
+
+const newQuote = { text: 'New quote text', category: 'Category' };
+addQuoteToServer(newQuote);
+
+
 
 
