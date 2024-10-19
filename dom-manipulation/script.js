@@ -56,6 +56,20 @@ function addQuote() {
   }
 }
 
+function populateCategories() {
+  const categoryFilter = document.getElementById('categoryFilter');
+  const uniqueCategories = [...new Set(quotes.map(quote => quote.category))]; 
+  
+  categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+  
+  uniqueCategories.forEach(category => {
+    const option = document.createElement('option');
+    option.value = category;
+    option.textContent = category;
+    categoryFilter.appendChild(option);
+  });
+}
+
 
 function createAddQuoteForm() {
   const formContainer = document.createElement('div');
