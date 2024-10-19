@@ -170,3 +170,11 @@ function showRandomQuote() {
     createAddQuoteForm();
   };
 }
+
+
+
+async function fetchQuotesFromServer() {
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const serverQuotes = await response.json();
+  return serverQuotes;
+}
