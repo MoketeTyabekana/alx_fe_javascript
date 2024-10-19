@@ -13,6 +13,14 @@ function saveQuotes() {
 }
 
 
+function loadQuotes() {
+  const storedQuotes = localStorage.getItem('quotes');
+  if (storedQuotes) {
+    quotes = JSON.parse(storedQuotes);
+  }
+}
+
+
   function showRandomQuote() {
     const quoteDisplay = document.getElementById('quoteDisplay');
    
