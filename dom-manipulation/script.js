@@ -184,3 +184,16 @@ setInterval(async () => {
   syncQuotesWithServer(serverQuotes);
 }, 60000);
 
+
+function syncQuotesWithServer(serverQuotes) {
+  const localQuotes = JSON.parse(localStorage.getItem('quotes')) || [];
+  
+  const updatedQuotes = [...serverQuotes, ...localQuotes.filter(localQuote => {
+    return !serverQuotes.find(serverQuote => serverQuote.id === localQuote.id);
+  })];
+
+  localStorage.setItem('quotes', JSON.stringify(updatedQuotes));
+}
+
+
+
