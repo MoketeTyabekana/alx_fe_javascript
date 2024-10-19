@@ -87,6 +87,20 @@ function createAddQuoteForm() {
 }
 
 
+function exportToJson() {
+  const jsonQuotes = JSON.stringify(quotes);
+  const blob = new Blob([jsonQuotes], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'quotes.json';
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+
 window.onload = function() {
   showRandomQuote();
   createAddQuoteForm();
