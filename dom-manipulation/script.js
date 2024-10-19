@@ -31,6 +31,14 @@ function loadQuotes() {
     sessionStorage.setItem('lastQuote', JSON.stringify(randomQuote)); 
   }
 
+  function loadLastViewedQuote() {
+    const lastQuote = sessionStorage.getItem('lastQuote');
+    if (lastQuote) {
+      const quote = JSON.parse(lastQuote);
+      document.getElementById('quoteDisplay').innerHTML = `<p>"${quote.text}" - Category: ${quote.category}</p>`;
+    }
+  }
+
 
   function addQuote() {
     const newQuoteText = document.getElementById('newQuoteText').value;
