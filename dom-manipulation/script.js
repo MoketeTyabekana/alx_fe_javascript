@@ -115,15 +115,11 @@ function importFromJsonFile(event) {
 }
 
 
-window.onload = function() {
-  showRandomQuote();
-  createAddQuoteForm();
-};
-
-
-
-  document.getElementById('newQuote').addEventListener('click', showRandomQuote);
+document.getElementById('newQuote').addEventListener('click', showRandomQuote);
 document.getElementById('addQuote').addEventListener('click', addQuote);
+document.getElementById('exportQuotes').addEventListener('click', exportToJson);
 
-// Initially show a random quote on page load
-window.onload = showRandomQuote;
+
+window.onload = function() {
+  loadQuotes();
+  loadLastViewedQuote();}
