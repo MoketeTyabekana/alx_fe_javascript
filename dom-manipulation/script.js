@@ -23,11 +23,12 @@ function loadQuotes() {
 
   function showRandomQuote() {
     const quoteDisplay = document.getElementById('quoteDisplay');
-   
     const randomIndex = Math.floor(Math.random() * quotes.length);
     const randomQuote = quotes[randomIndex];
     
     quoteDisplay.innerHTML = `<p>"${randomQuote.text}" - Category: ${randomQuote.category}</p>`;
+
+    sessionStorage.setItem('lastQuote', JSON.stringify(randomQuote)); 
   }
 
 
