@@ -209,5 +209,18 @@ const newQuote = { text: 'New quote text', category: 'Category' };
 addQuoteToServer(newQuote);
 
 
+function resolveConflicts(serverQuotes, localQuotes) {
+  
+  const resolvedQuotes = serverQuotes.concat(localQuotes.filter(localQuote => {
+    return !serverQuotes.some(serverQuote => serverQuote.id === localQuote.id);
+  }));
+  
+  return resolvedQuotes;
+}
+
+function notifyConflictResolution() {
+  alert('Conflict detected! Data from the server has taken precedence.');
+}
+
 
 
